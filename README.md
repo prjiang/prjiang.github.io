@@ -1,1 +1,1 @@
-<a href="https://prjiang.github.io">prjiang.github.io</a>
+<a href="https://prjiang.github.io" target="_blank">prjiang.github.io</a>
