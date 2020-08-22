@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Website of P.R. Jiang</title>
+	
+	<link rel='stylesheet' href='lib/jquery-ui.css'>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    
+
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/loadingAnimation.css">
+    <link rel="stylesheet" href="css/pageHeader.css">
+    <link rel="stylesheet" href="css/bash.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/content.css">
+	<style>
+	@media (max-width: 480px) {
+		body {
+			padding: 0.5em 1em;
+		}
+	}
+	</style>
+	
+	
+</head>
+<body>
+	
+	<!-- This is the navigation bar -->
+    <nav class=" mainPage navbar navbar-inverse navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Logo that takes the user to the main page-->
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+					<p style="padding: 4px;font-weight: bold;flex:auto;font-size: 1.6em;margin-top:5px;color:white;">Website of P.R. Jiang</p>
+                    <!-- left navi buttons-->
+                </ul>
+
+                <!--  User Profile Drop Down Menu and right navi buttons-->
+                <ul class="nav navbar-nav navbar-right navi-color">
+					
+                    <li>
+						<a href="mailto:nostril.prj@gmail.com"><i class="fa fa-dot-circle-o"></i> E-mail </a>
+					</li>
+					
+					
+					<li>
+						<a href="https://t.me/prjiang/" target="_blank"><i class="fa fa-dot-circle-o"></i> Telegram </a>
+					</li>
+					
+					<li>
+                        <a href="https://github.com/prjiang/" target="_blank"><i class="fa fa-dot-circle-o"></i> Github </a>
+                    </li>
+                    
+                    
+
+                    <li class="dropdown">
+                        <a href="index.html">
+                            <span class="navbar-current-page">P.R. Jiang</span>
+                            <div class="list-group-item-icon">
+                                <img class="img-circle img-responsive" style="width: 40px; height: 40px;" src="img/me.jpg" />
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+	
+	<main>
+		<p class="item">I am a student majoring in Information Management. My specialize of Programming Language is Python. I am currently learning HTML/CSS/JavaScript.</p>
+		<p class="box">I am interested in: </p>
+		<ul class="it2">
+			<li>Application of the IOT</li>
+			<li>The development of AI</li>
+			<li>Blockchain technology</li>
+		</ul>
+		<p class="box">My pieceworks: </p>
+		<ul class="it2">
+			<li><a href="https://github.com/prjiang/faces-recognition" target="_blank">Faces recognition</a></li>
+			<li><a href="https://t.me/Jiang_test_bot" target="_blank">Telegram Chatbot</a></li>
+		</ul>
+		<p class="box">I have participated in: </p>
+		<ul class="it2">
+			<li>飢餓三十 (2016.7)</li>
+			<li>國立成功大學法律研習營 (2017.7)</li>
+			<li>國際運算思維挑戰賽 (PR84 in 2019)</li>
+			<li>就業輔導講座 - 由資訊管理至藥品行銷 (2020.5)</li>
+		</ul>
+		
+		<footer class="line">This page is updated at: <span id="last-update"></span></footer>
+		<script>
+		const $ = (s) => document.querySelector(s);
+
+		const URL = 'https://api.github.com/repos/prjiang/prjiang.github.io';
+
+		var request = new XMLHttpRequest();
+		request.open('GET', URL);
+		request.responseType = 'json';
+		request.send();
+
+		request.onload = function() {
+			var data = request.response;
+			$('#last-update').innerText = data.updated_at;
+		}
+		</script>
+	</main>
+	
+	<script src='js/jquery.min.js'></script>
+    <script src='js/jquery-ui.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+
+    <script src='js/project.js'></script>
+    <script src="js/bashAnimation.js"></script>
+	
+</body>
+</html>
