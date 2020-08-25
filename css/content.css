@@ -1,0 +1,104 @@
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+p,a,input,label,textarea,span,ul,li{
+	font-family: 'Times, serif';
+}
+
+#intro .jumbotron{
+	height: 40vh;
+}
+#intro .container{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+header li{
+	margin: 0 10px;
+}
+.nav{
+	font-size: 1.2em;
+	font-weight: 400;
+	display: flex;
+	line-height: 1.4;
+}
+
+
+
+.nav-title{
+	font-size: 1.6em;
+	font-weight: 500;
+	padding: 10px;
+	margin: auto;
+}
+.nav-contact{
+	font-size: 16px;
+	font-weight: 200;
+}
+
+.nav li:hover:nth-child(8n+1),
+.nav li.active:nth-child(8n+1) {
+    border-top: #000000 3px solid; /* 指定標籤上方顏色 */
+	color: #030303;
+}
+.nav li:hover:nth-child(8n+2),
+.nav li.active:nth-child(8n+2) {
+    border-top: #000000 3px solid; /* 指定標籤上方顏色 */
+    color: #030303;
+}
+.nav li:hover:nth-child(8n+3),
+.nav li.active:nth-child(8n+3) {
+    border-top: #000000 3px solid; /* 指定標籤上方顏色 */
+    color: #030303;
+}
+.nav li:hover:nth-child(8n+4),
+.nav li.active:nth-child(8n+4) {
+    border-top: #000000 3px solid; /* 指定標籤上方顏色 */
+    color: #030303;
+}
+
+.navbar-current-page {
+    color: #030303; /* 首頁按鈕顏色 */
+}
+.img-responsive {
+    border: 0px solid #ddd;
+    width: 100%;
+}
+.img-circle{border-radius:50%}
+.list-group-item-icon {
+    float: right;
+    padding-left: 15px;
+    margin-top: -10px;
+}
+
+#myTypingText {
+    margin-top: 0.075rem;
+    font-size: 1.4em;
+    line-height: 1.7;
+    letter-spacing: 0.04375rem;
+	padding: 0px 10px;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+.content{
+	font-size: 1.4em;
+}
+.licontent{
+	font-size: 1.2em;
+	list-style-type: circle;
+}
+.line{
+	font-family: Times, serif;
+	font-size: 0.8em;
+	border-top: 1.8px solid #aaa ;
+	width: auto;margin:10px;
+	margin-left: -10px;
+}
+
+@media (max-width: 480px) {
+	body {
+		padding: 0.5em 1em;
+	}
+}
