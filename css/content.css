@@ -97,10 +97,6 @@ header li{
 	margin-left: -10px;
 }
 
-.name{
-	color:#005b96 ;
-	font-size: 1em;
-}
 
 @media (max-width: 480px) {
 	body {
