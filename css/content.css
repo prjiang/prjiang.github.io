@@ -53,6 +53,11 @@ header li{
     border-top: #000000 3px solid; 
     color: #030303;
 }
+.nav li:hover:nth-child(8n+4),
+.nav li.active:nth-child(8n+4) {
+    border-top: #000000 3px solid; 
+    color: #030303;
+}
 
 .navbar-current-page {
     color: #030303; 
