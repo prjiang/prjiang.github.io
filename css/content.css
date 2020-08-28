@@ -78,6 +78,7 @@ header li{
     font-size: 1.4em;
     line-height: 1.7;
     letter-spacing: 0.04375rem;
+    padding: 0px;
     font-family: 'Times New Roman', Times, serif;
 }
 
