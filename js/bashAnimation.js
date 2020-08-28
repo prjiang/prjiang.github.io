@@ -1,4 +1,4 @@
-var myDescription = "I am a student majoring in Information Management. My specialize of Programming Language is Python. I am currently learning HTML / CSS / JavaScript.";
+var myDescription = "I am a student majoring in Information Management. My specialization in Programming Language is Python and I continue to study it. Also, I am currently learning HTML / CSS / JavaScript.";
 
 var textArray = myDescription.split("");
 var loopTimer;
