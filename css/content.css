@@ -102,4 +102,7 @@ header li{
 	body {
 		padding: 0.5em 1em;
 	}
+	#myTypingText {
+		font-size: 1.2em;
+	}
 }
