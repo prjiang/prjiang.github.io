@@ -1,10 +1,3 @@
-h1,h2,h3,h4,h5,h6{
-	font-family: 'Noto Sans TC', sans-serif;
-}
-p,a,input,label,textarea,span,ul,li{
-	font-family: 'Times, serif';
-}
-
 #intro .jumbotron{
 	height: 40vh;
 }
@@ -83,16 +76,24 @@ header li{
 }
 
 .content{
-	font-size: 1.4em;
+	font-family: montserrat,Helvetica,sans-serif;
+	font-size: 1.6rem;
+	font-weight: 500;
+ 	letter-spacing: .1875rem;
+	text-transform: uppercase;
+	padding-left: 8px;
+	border-left: 4px solid #000;
+	font-size: 1.2em;
 }
 .licontent{
 	font-size: 1.2em;
+	font-family: montserrat,Helvetica,sans-serif;
 	list-style-type: circle;
+	color: #5d5d5d;
 }
 .line{
-	font-family: Times, serif;
 	font-size: 0.8em;
-	border-top: 1.8px solid #aaa ;
+	border-top: 1.8px solid #d8d8d8 ;
 	width: auto;margin:10px;
 	margin-left: -10px;
 }
