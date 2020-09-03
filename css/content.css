@@ -92,10 +92,9 @@ header li{
 	color: #5d5d5d;
 }
 .line{
-	font-size: 0.8em;
 	border-top: 1.8px solid #d8d8d8 ;
 	width: auto;margin:10px;
-	margin-left: -10px;
+	margin-left: -6px;
 }
 
 
