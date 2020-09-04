@@ -25,10 +25,11 @@ header li{
 	font-weight: 500;
 	padding: 10px;
 	margin: auto;
+	font-family: Times, serif;
 }
-.nav-contact{
-	font-size: 16px;
-	font-weight: 200;
+
+.nav-item{
+	font-family: Times, serif;
 }
 
 .nav li:hover:nth-child(8n+1),
