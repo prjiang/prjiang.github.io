@@ -69,6 +69,7 @@ header li{
 
 #myTypingText {
     margin-top: 0.075rem;
+    margin-left: 14px; 
     font-size: 1.4em;
     line-height: 1.7;
     letter-spacing: 0.04375rem;
@@ -102,7 +103,7 @@ header li{
 
 @media (max-width: 480px) {
 	#second {
-		padding: 1em;
+		padding: 0.5em 1em;
 	}
 	#myTypingText {
 		font-size: 1.2em;
