@@ -3,28 +3,15 @@ body {
 	margin-top: 14px;
 }
 
-#intro .jumbotron{
-	height: 40vh;
-}
-#intro .container{
-	position: relative;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-}
-header li{
-	margin: 0 10px;
-}
+
+
+/*      navbar      */
 .nav{
 	font-size: 1.2em;
 	font-weight: 400;
 	display: flex;
 	line-height: 1.4;
 }
-
-
-
 .nav-title{
 	font-size: 1.6em;
 	font-weight: 500;
@@ -32,7 +19,6 @@ header li{
 	margin: auto;
 	font-family: Times, serif;
 }
-
 .nav-item{
 	font-family: Times, serif;
 }
@@ -72,16 +58,34 @@ header li{
     margin-top: -10px;
 }
 
+
+
+/*      About me      */
+#intro .jumbotron{
+	height: 40vh;
+}
+#intro .container{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+header li{
+	margin: 0 10px;
+}
 #myTypingText {
     margin-top: 0.075rem;
     margin-left: 14px; 
     font-size: 1.4em;
     line-height: 1.7;
     letter-spacing: 0.04375rem;
-    padding: 14px;
     font-family: 'Times New Roman', Times, serif;
 }
 
+
+
+/*      Content      */
 .content{
 	font-family: montserrat,Helvetica,sans-serif;
 	font-size: 1.6rem;
@@ -104,6 +108,7 @@ header li{
 	width: auto;margin:10px;
 	margin-left: -6px;
 }
+
 
 
 @media (max-width: 480px) {
