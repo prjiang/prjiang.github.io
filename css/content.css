@@ -108,3 +108,8 @@ header li{
 		font-size: 1.2em;
 	}
 }
+@media (max-width: 768px) {
+	#myTypingText {
+		font-size: 1.2em;
+	}
+}
