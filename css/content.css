@@ -76,7 +76,7 @@ header li{
 }
 #myTypingText {
     margin-top: 0.075rem;
-    margin-left: 14px; 
+    padding: 0px 14px; 
     font-size: 1.4em;
     line-height: 1.7;
     letter-spacing: 0.04375rem;
