@@ -6,17 +6,17 @@ body {
 
 
 /*      navbar      */
-.nav{
-	font-size: 1.2em;
-	font-weight: 400;
-	display: flex;
-	line-height: 1.4;
-}
 .nav-title{
 	font-size: 1.8em;
 	font-weight: 500;
 	margin: auto;
 	font-family: Times, serif;
+}
+.nav{
+	font-size: 1.2em;
+	font-weight: 400;
+	display: flex;
+	line-height: 1.4;
 }
 .nav-item{
 	font-family: Times, serif;
@@ -117,9 +117,15 @@ header li{
 	#myTypingText {
 		font-size: 1.2em;
 	}
+	.nav-title{
+		font-size: 1.6em;
+	}
 }
 @media (max-width: 768px) {
 	#myTypingText {
 		font-size: 1.2em;
+	}
+	.nav-title{
+		font-size: 1.6em;
 	}
 }
