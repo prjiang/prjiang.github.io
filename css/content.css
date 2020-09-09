@@ -10,6 +10,7 @@ body {
 	font-size: 1.8em;
 	font-weight: 500;
 	margin: auto;
+	padding: 8px;
 	font-family: Times, serif;
 }
 .nav{
