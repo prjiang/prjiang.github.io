@@ -131,6 +131,9 @@ header li{
 		font-size: 1em;
 	}
 	.nav {
-		margin-left: 0%
+		margin-left: 0%;
+	}
+	#time div {
+		font-size: 1em;
 	}
 }
