@@ -99,7 +99,7 @@ header li{
 	margin-top: 4px;
 }
 .licontent{
-	font-size: 1em;
+	font-size: 17px;
 	font-family: montserrat,Helvetica,sans-serif;
 	list-style-type: circle;
 	color: #5d5d5d;
@@ -118,9 +118,6 @@ header li{
 @media (max-width: 480px) {
 	#second {
 		padding: 0em 1em;
-	}
-	#myTypingText {
-		font-size: 1em;
 	}
 	.nav-title{
 		font-size: 1.6em;
