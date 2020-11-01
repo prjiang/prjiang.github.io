@@ -104,6 +104,9 @@ header li{
 	list-style-type: circle;
 	color: #5d5d5d;
 }
+#second a{
+	color: #0366d6;
+}
 .line{
 	border-top: 1.8px solid #d8d8d8 ;
 	width: auto;margin:10px;
