@@ -117,7 +117,7 @@ header li{
 		padding: 0em 1em;
 	}
 	#myTypingText {
-		font-size: 1.2em;
+		font-size: 1em;
 	}
 	.nav-title{
 		font-size: 1.6em;
@@ -125,6 +125,6 @@ header li{
 }
 @media (max-width: 768px) {
 	#myTypingText {
-		font-size: 1.2em;
+		font-size: 1em;
 	}
 }
