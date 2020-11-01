@@ -78,7 +78,7 @@ header li{
 #myTypingText {
     margin-top: 0.075rem;
     padding: 0px 14px; 
-    font-size: 1.4em;
+    font-size: 1.2em;
     line-height: 1.7;
     letter-spacing: 0.04375rem;
     font-family: 'Times New Roman', Times, serif;
@@ -99,7 +99,7 @@ header li{
 	margin-top: 4px;
 }
 .licontent{
-	font-size: 1.2em;
+	font-size: 1em;
 	font-family: montserrat,Helvetica,sans-serif;
 	list-style-type: circle;
 	color: #5d5d5d;
@@ -126,5 +126,8 @@ header li{
 @media (max-width: 768px) {
 	#myTypingText {
 		font-size: 1em;
+	}
+	.nav {
+		margin-left: 0%
 	}
 }
