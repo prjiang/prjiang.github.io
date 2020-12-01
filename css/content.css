@@ -64,7 +64,6 @@ body {
 /*      About me      */
 #intro .jumbotron{
 	height: 40vh;
-	margin-bottom: 40px;
 }
 #intro .container{
 	position: relative;
