@@ -129,4 +129,7 @@ header li{
 	.nav {
 		margin-left: 0%;
 	}
+	#intro .jumbotron{
+		padding: 0rem 2rem;
+	}
 }
