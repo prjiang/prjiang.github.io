@@ -216,6 +216,8 @@
 <p>查看 git config 設定</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br></pre></td></tr></table></figure>
 
+<br>
+
 <h2 id="Importing-project"><a href="#Importing-project" class="headerlink" title="Importing project"></a>Importing project</h2><h3 id="Creat-a-project-file"><a href="#Creat-a-project-file" class="headerlink" title="Creat a project file"></a>Creat a project file</h3><p>建立專案資料夾</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir project</span><br></pre></td></tr></table></figure>
 
@@ -243,12 +245,16 @@
 <h2 id="Git-push-to-GitHub"><a href="#Git-push-to-GitHub" class="headerlink" title="Git push to GitHub"></a>Git push to GitHub</h2><p>將 local repo commit 發佈到 GitHub</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
 
+<br>
+
 <h2 id="View-project-history"><a href="#View-project-history" class="headerlink" title="View project history"></a>View project history</h2><p>查看之前的 commit 記錄<code>版本資訊</code></p>
 <p>q 退出</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span>       // 作者、時間、commit 內容</span><br><span class="line">$ git reflog    // commit 內容</span><br></pre></td></tr></table></figure>
 
 <p>查看目前檔案與上次 commit 的差異</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff commitID</span><br></pre></td></tr></table></figure>
+
+<br>
 
 <h2 id="Set-up-SSH-key-on-your-machine"><a href="#Set-up-SSH-key-on-your-machine" class="headerlink" title="Set up SSH key on your machine"></a>Set up SSH key on your machine</h2><p>在 terminal 執行 SSH 時發生如下錯誤 :</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Permissiondenied (publickey).</span><br><span class="line">fatal:Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Pleasemake sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure>
