@@ -314,12 +314,12 @@
 <p>神經網路參考GoogleNet，24層 Conv Layers、2層F.C。</p>
 <p>不同的是 YOLO 使用 1*1 卷積(降維)對 3*3 卷積核運算做壓縮，以減少計算參數。取代 GoogleNet 的 Inception modules。</p>
 <p>最後輸出 tensor 為 7 * 7 *(2 * 5 + 20) = 7 * 7 * 30</p>
+<p>C = 20，使用 PASCAL VOC 資料集，有20種類別。</p>
 <p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model1.png" alt="img8.1"></p>
 <p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model2.png" alt="img8.2"></p>
 <p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_output.png" alt="img8.3"></p>
 <p>Bounding box 四個位置值為正規化數值 :</p>
 <p>(x, y, w, h) = bbox(x, y, w, h) / 原影像(x, y, w, h)</p>
-<p>C = 20，使用 PASCAL VOC 資料集，有20種類別。</p>
 <h4 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h4><p>Activation function 採用 leaky rectified linear activation (leaky ReLU):</p>
 <p>ReLU 會使部分神經元輸出為0，以解決 Overfitting，但有些神經元可能無法被激活(Dead ReLU Problem)，因此採用 Leaky ReLU 不增加計算複雜度，提升模型的學習能力。</p>
 <p>ReLU 是將所有負值皆設為零；Leaky ReLU 則是將負值乘上非零斜率。</p>
