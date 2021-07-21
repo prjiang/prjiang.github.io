@@ -238,7 +238,7 @@
 <h3 id="Creat-a-repository"><a href="#Creat-a-repository" class="headerlink" title="Creat a repository"></a>Creat a repository</h3><p>建立本地端初始化 git repository</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 
-<h3 id="Clone-GitHub-repository"><a href="#Clone-GitHub-repository" class="headerlink" title="Clone GitHub repository"></a>Clone GitHub repository</h3><p>從 GitHub 下載資料庫<code>remote repo</code>至目前工作區</p>
+<h3 id="Clone-GitHub-repository"><a href="#Clone-GitHub-repository" class="headerlink" title="Clone GitHub repository"></a>Clone GitHub repository</h3><p>從 GitHub 下載數據庫<code>remote repo</code>至目前工作區</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> SSH/HTTPS</span><br></pre></td></tr></table></figure>
 
 <h3 id="Listing-the-contents-of-file-information"><a href="#Listing-the-contents-of-file-information" class="headerlink" title="Listing the contents of file information"></a>Listing the contents of file information</h3><p>列出 project file 的檔案和資料夾 <code>-l: 列出詳細資料</code> <code>-a: 列出隱藏資料夾</code></p>
@@ -253,7 +253,10 @@
 <h2 id="Git-commit-to-local-repository"><a href="#Git-commit-to-local-repository" class="headerlink" title="Git commit to local repository"></a>Git commit to local repository</h2><p>將建立索引的更新檔案 commit 到 local repo</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;summary&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git-push-to-GitHub"><a href="#Git-push-to-GitHub" class="headerlink" title="Git push to GitHub"></a>Git push to GitHub</h2><p>將 local repo commit 發佈到 GitHub</p>
+<h2 id="Git-push-to-GitHub"><a href="#Git-push-to-GitHub" class="headerlink" title="Git push to GitHub"></a>Git push to GitHub</h2><p>加入遠端數據庫</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin url</span><br></pre></td></tr></table></figure>
+
+<p>將 local repo commit 發佈到 GitHub</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin branch</span><br></pre></td></tr></table></figure>
 
 <br>
