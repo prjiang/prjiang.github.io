@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="prjiang">
+
+
+
+    <meta name="description" content="This is prjiang personal website.">
+
+
+    <meta name="keywords" content="prjiang,江品叡">
+
+
+<title>Install Raspberry Pi OS | Debug Guy</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Debug Guy</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Debug Guy</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Install Raspberry Pi OS</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">prjiang</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 30, 2021&nbsp;&nbsp;18:03:13</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Raspberry-Pi/">Raspberry Pi</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h2><h3 id="作業系統"><a href="#作業系統" class="headerlink" title="作業系統"></a>作業系統</h3><p>下載 <a target="_blank" rel="noopener" href="https://www.raspberrypi.org/downloads/">Raspberry Pi Imager</a> <b>(建議)</b> 或 <a target="_blank" rel="noopener" href="https://www.raspberrypi.org/downloads/raspberry-pi-os/">Raspberry Pi OS (previously called Raspbian)</a>，下載官方版較不會出現不相容問題。</p>
+<p>將作業系統安裝至micro SD卡。(建議先將SD卡格式化)</p>
+<br>
+
+<p>新增空的ssh檔案(無副檔名) 及 製作 WiFi 設定檔。</p>
+<p>建議可以對電腦熱點進行連線，方便查找 Raspberry Pi 的 IP 。將 ssh 及 wpa_supplicant.conf 設定好放置 boot。</p>
+<p>完成後，將SD卡插入 Raspberry Pi 。</p>
+<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=3908401">樹莓派 Raspberry Pi，無頭式(無螢幕、鍵盤與滑鼠)，安裝到進入作業系統桌面~完整教學</a></p>
+<br>
+
+<h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h2><h3 id="SSH-登入"><a href="#SSH-登入" class="headerlink" title="SSH 登入"></a>SSH 登入</h3><h4 id="抓取Raspberry-Pi-的-IP"><a href="#抓取Raspberry-Pi-的-IP" class="headerlink" title="抓取Raspberry Pi 的 IP"></a>抓取Raspberry Pi 的 IP</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>將 Raspberry Pi 開啟，進入 WiFi 路由器的設定頁面，<b>抓取 Raspberry Pi 的 IP</b>。</p>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>電腦開啟熱點，提供 Raspberry Pi 連線。</p>
+<p>連線後即可從電腦的<b>熱點設定頁面</b>查看 Raspberry Pi 的 IP。</p>
+<br>
+
+<h4 id="登入-SSH"><a href="#登入-SSH" class="headerlink" title="登入 SSH"></a>登入 SSH</h4><p>找出IP後，開啟 Windows PowerShell (系統管理員)，並登入ssh。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\WINDOWS\system32&gt; ssh pi@Raspberry Pi 的IP</span><br></pre></td></tr></table></figure>
+<p>預設帳號為: <b>pi</b></p>
+<p>預設密碼為: <b>raspberry</b></p>
+<br>
+
+<h3 id="啟用-VNC-服務"><a href="#啟用-VNC-服務" class="headerlink" title="啟用 VNC 服務"></a>啟用 VNC 服務</h3><p>成功登入ssh後，下載 <a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a>。</p>
+<p>開啟 VNC 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p><code>Interfacing Options -&gt; VNC -&gt; Yes</code></p>
+<p>重啟後，開啟 VNC Viewer 會出現錯誤!</p>
+<br>
+
+<h3 id="錯誤解決"><a href="#錯誤解決" class="headerlink" title="錯誤解決"></a>錯誤解決</h3><p>更改解析度即可解決，<b>不要選default</b>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p><code>Advanced Options----Resolution----DMT85 (不要選default)</code></p>
+<br>
+
+<p>完成後，重新啟動。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo reboot</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>VNC 登入後，即可見到 Raspberry Pi 系統。</p>
+<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://www.twblogs.net/a/5d4b3b75bd9eee5327fc11e1">樹莓派 raspberry 4B系統 VNC View 連接 Cannot currently show the desktop 錯誤解決</a></p>
+<br>
+
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="備份-SD-卡"><a href="#備份-SD-卡" class="headerlink" title="備份 SD 卡"></a>備份 SD 卡</h3><p>下載<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/win32diskimager/">Win32 Disk Imager</a>。</p>
+<p><b>裝置</b>選擇 Micro SD 卡位置，<b>映像檔</b>為存放位置，副檔名為img!</p>
+<p>點選<b>讀取</b></p>
+<p>讀取成功後，即可退出 Micro SD 卡。</p>
+<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://oranwind.org/-raspberry-pi-win32-disk-imager-bei-fen-sd-qia-jiao-xue/">Raspberry Pi Win32 Disk Imager 備份 SD 卡教學</a></p>
+<br>
+
+<h3 id="更改-Raspberry-Pi-的預設網路連線"><a href="#更改-Raspberry-Pi-的預設網路連線" class="headerlink" title="更改 Raspberry Pi 的預設網路連線"></a>更改 Raspberry Pi 的預設網路連線</h3><p>若想更改預設網路連線，可登入ssh 修改 wpa_supplicant.conf ，新增WiFi之帳號密碼。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</span><br></pre></td></tr></table></figure>
+
+<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://www.raspberrypi.com.tw/2152/setting-up-wifi-with-the-command-line/">基礎-命令列設置無線網路</a></p>
+<br>
+
+<h3 id="查看-Raspberry-Pi-的-CPU-溫度"><a href="#查看-Raspberry-Pi-的-CPU-溫度" class="headerlink" title="查看 Raspberry Pi 的 CPU 溫度"></a>查看 Raspberry Pi 的 CPU 溫度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ /opt/vc/bin/vcgencmd measure_temp</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="查看-SD-卡儲存空間"><a href="#查看-SD-卡儲存空間" class="headerlink" title="查看 SD 卡儲存空間"></a>查看 SD 卡儲存空間</h3><p>檔案系統</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ df -h</span><br></pre></td></tr></table></figure>
+<p>各目錄大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ du --max-depth=1-h</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="啟動後，Line-Notify-發送啟動通知提醒"><a href="#啟動後，Line-Notify-發送啟動通知提醒" class="headerlink" title="啟動後，Line Notify 發送啟動通知提醒"></a>啟動後，Line Notify 發送啟動通知提醒</h3><p>Line Notify 程式碼</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line">#-*-coding:utf-8-*-</span><br><span class="line"></span><br><span class="line">import lineTool</span><br><span class="line">import time</span><br><span class="line">import datetime</span><br><span class="line"></span><br><span class="line">Token = &quot;Your Token&quot;</span><br><span class="line">TurnOn_message = &quot;\n💡 Raspberry Pi 已啟動!\n&quot;</span><br><span class="line">Time_message = time.strftime(&quot;🕒 %Y-%m-%d %H:%M:%S&quot;, time.localtime())</span><br><span class="line">MESSAGE = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">time.sleep(10)</span><br><span class="line">MESSAGE = TurnOn_message+ Time_message</span><br><span class="line">print(&quot;Send message to Line \n%s\n&quot; % MESSAGE)</span><br><span class="line"></span><br><span class="line">lineTool.lineNotify(Token, MESSAGE)</span><br><span class="line"></span><br><span class="line">input()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>SyntaxError: Non-ASCII character ‘\xe4’ in file.</p>
+</blockquote>
+<p>在程式碼開頭加入以下聲明字符格式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line">#-*-coding:utf-8-*-</span><br></pre></td></tr></table></figure>
+
+<p>存檔後，設定 Corntab 每次 Raspberry Pi 啟動時運行命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+<p>所有＃開頭的都是註解，在文件最後加入以下命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot python /home/pi/myscript.py</span><br></pre></td></tr></table></figure>
+
+<p><code>Reference</code>: </p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.slideshare.net/YanweiLiu1/pythonhow-to-install-python-package-on-raspberry-pi">如何幫樹莓派安裝常用的Python套件(How to Install Python Package on Raspberry Pi)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://wyj-learning.blogspot.com/2018/07/python-106-python-line-raspberry-pi.html?m=1">一起學 Python 107 : 五分鐘學會使用 Python 傳送 Line 訊息 在 Raspberry pi 開機啟動提醒</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.raspberrypi.org/documentation/linux/usage/cron.md">使用Cron安排任務</a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>prjiang</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2021 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Raspberry-Pi-OS/"># Raspberry Pi OS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/07/18/Object%20detection/Yolo%20v1/">YOLO v1 Real Time Object Detection</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© prjiang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
