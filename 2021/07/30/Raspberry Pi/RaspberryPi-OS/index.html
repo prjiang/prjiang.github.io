@@ -225,7 +225,7 @@
 <p>新增空的ssh檔案(無副檔名) 及 製作 WiFi 設定檔。</p>
 <p>建議可以對電腦熱點進行連線，方便查找 Raspberry Pi 的 IP 。將 ssh 及 wpa_supplicant.conf 設定好放置 boot。</p>
 <p>完成後，將SD卡插入 Raspberry Pi 。</p>
-<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=3908401">樹莓派 Raspberry Pi，無頭式(無螢幕、鍵盤與滑鼠)，安裝到進入作業系統桌面~完整教學</a></p>
+<p><code>Reference:</code> <a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=3908401">樹莓派 Raspberry Pi，無頭式(無螢幕、鍵盤與滑鼠)，安裝到進入作業系統桌面~完整教學</a></p>
 <br>
 
 <h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h2><h3 id="SSH-登入"><a href="#SSH-登入" class="headerlink" title="SSH 登入"></a>SSH 登入</h3><h4 id="抓取Raspberry-Pi-的-IP"><a href="#抓取Raspberry-Pi-的-IP" class="headerlink" title="抓取Raspberry Pi 的 IP"></a>抓取Raspberry Pi 的 IP</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>將 Raspberry Pi 開啟，進入 WiFi 路由器的設定頁面，<b>抓取 Raspberry Pi 的 IP</b>。</p>
@@ -257,20 +257,20 @@
 <br>
 
 <p>VNC 登入後，即可見到 Raspberry Pi 系統。</p>
-<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://www.twblogs.net/a/5d4b3b75bd9eee5327fc11e1">樹莓派 raspberry 4B系統 VNC View 連接 Cannot currently show the desktop 錯誤解決</a></p>
+<p><code>Reference:</code> <a target="_blank" rel="noopener" href="https://www.twblogs.net/a/5d4b3b75bd9eee5327fc11e1">樹莓派 raspberry 4B系統 VNC View 連接 Cannot currently show the desktop 錯誤解決</a></p>
 <br>
 
 <h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="備份-SD-卡"><a href="#備份-SD-卡" class="headerlink" title="備份 SD 卡"></a>備份 SD 卡</h3><p>下載<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/win32diskimager/">Win32 Disk Imager</a>。</p>
 <p><b>裝置</b>選擇 Micro SD 卡位置，<b>映像檔</b>為存放位置，副檔名為img!</p>
 <p>點選<b>讀取</b></p>
 <p>讀取成功後，即可退出 Micro SD 卡。</p>
-<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://oranwind.org/-raspberry-pi-win32-disk-imager-bei-fen-sd-qia-jiao-xue/">Raspberry Pi Win32 Disk Imager 備份 SD 卡教學</a></p>
+<p><code>Reference:</code> <a target="_blank" rel="noopener" href="https://oranwind.org/-raspberry-pi-win32-disk-imager-bei-fen-sd-qia-jiao-xue/">Raspberry Pi Win32 Disk Imager 備份 SD 卡教學</a></p>
 <br>
 
 <h3 id="更改-Raspberry-Pi-的預設網路連線"><a href="#更改-Raspberry-Pi-的預設網路連線" class="headerlink" title="更改 Raspberry Pi 的預設網路連線"></a>更改 Raspberry Pi 的預設網路連線</h3><p>若想更改預設網路連線，可登入ssh 修改 wpa_supplicant.conf ，新增WiFi之帳號密碼。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</span><br></pre></td></tr></table></figure>
 
-<p><code>Reference</code>: <a target="_blank" rel="noopener" href="https://www.raspberrypi.com.tw/2152/setting-up-wifi-with-the-command-line/">基礎-命令列設置無線網路</a></p>
+<p><code>Reference:</code> <a target="_blank" rel="noopener" href="https://www.raspberrypi.com.tw/2152/setting-up-wifi-with-the-command-line/">基礎-命令列設置無線網路</a></p>
 <br>
 
 <h3 id="查看-Raspberry-Pi-的-CPU-溫度"><a href="#查看-Raspberry-Pi-的-CPU-溫度" class="headerlink" title="查看 Raspberry Pi 的 CPU 溫度"></a>查看 Raspberry Pi 的 CPU 溫度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ /opt/vc/bin/vcgencmd measure_temp</span><br></pre></td></tr></table></figure>
@@ -298,7 +298,7 @@
 <p>所有＃開頭的都是註解，在文件最後加入以下命令。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot python /home/pi/myscript.py</span><br></pre></td></tr></table></figure>
 
-<p><code>Reference</code>: </p>
+<p><code>Reference:</code></p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://www.slideshare.net/YanweiLiu1/pythonhow-to-install-python-package-on-raspberry-pi">如何幫樹莓派安裝常用的Python套件(How to Install Python Package on Raspberry Pi)</a></p>
 </li>
@@ -347,6 +347,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/01/Raspberry%20Pi/RaspberryPi-SambaServer/">Raspberry Pi Samba Server</a>
             
             
             <a class="next" rel="next" href="/2021/07/18/Object%20Detection/Yolo%20v1/">YOLO v1 Real Time Object Detection</a>
