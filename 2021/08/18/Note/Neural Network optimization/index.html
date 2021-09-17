@@ -334,6 +334,8 @@
 <p>amp 使用方法 :</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 優化scaler</span></span><br><span class="line">scaler = torch.cuda.amp.GradScaler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入訓練過程中</span></span><br><span class="line"><span class="keyword">with</span> torch.cuda.amp.autocast():</span><br><span class="line">    output = model(data)</span><br><span class="line">    loss = criterion(output, target)</span><br><span class="line">scaler.scale(loss).backward()       <span class="comment"># 針對scaler 做反向傳遞</span></span><br><span class="line">scaler.step(optimizer)              <span class="comment"># 針對optimizer scaler 做梯度下降 </span></span><br><span class="line">scaler.update()                     <span class="comment"># 更新權重</span></span><br></pre></td></tr></table></figure>
 
+<br>
+
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://aigo.org.tw/zh-tw/onlinecourse/535">AIGO - 課程名稱：神經網路優化技巧：讓你的模型又快速又準確</a></li>
 </ul>
