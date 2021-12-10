@@ -1,231 +1,250 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-tw" data-default-color-scheme=auto>
+
+
 
 <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="This is prjiang personal website.">
+  <meta name="author" content="prjiang">
+  <meta name="keywords" content="prjiang,江品叡,pr jiang">
+  <meta name="description" content="You Only Look Once: Unified, Real-Time Object Detection IntroduceObject DetectionAlgorithm of The YOLO Detection System 其流程主要分為三個步驟 :  將影像大小調整至448*448 執行卷積神經網路進行物件偵測與分類 透過 NMS (Non-max suppression) 方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO v1 Real Time Object Detection">
+<meta property="og:url" content="https://prjiang.github.io/2021/07/18/Object%20Detection/Yolo%20v1/index.html">
+<meta property="og:site_name" content="Debug Guy">
+<meta property="og:description" content="You Only Look Once: Unified, Real-Time Object Detection IntroduceObject DetectionAlgorithm of The YOLO Detection System 其流程主要分為三個步驟 :  將影像大小調整至448*448 執行卷積神經網路進行物件偵測與分類 透過 NMS (Non-max suppression) 方式">
+<meta property="og:locale" content="en_TW">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ObjectDetection.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/stage.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/comparison.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ErrorAnalysis.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bird.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/IOU.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/predict.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/result.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/precision.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/recall.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/detections.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/confidence.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_output.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/leakyrelu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/inference.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_detect.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bbox-bias.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/NMS.png">
+<meta property="article:published_time" content="2021-07-18T14:18:21.665Z">
+<meta property="article:modified_time" content="2021-07-30T11:33:27.399Z">
+<meta property="article:author" content="prjiang">
+<meta property="article:tag" content="YOLO v1">
+<meta property="article:tag" content="Object detection">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ObjectDetection.png">
+  
+  <title>YOLO v1 Real Time Object Detection - Debug Guy</title>
 
-    <meta name="author" content="prjiang">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-    <meta name="description" content="This is prjiang personal website.">
-
-
-    <meta name="keywords" content="prjiang,江品叡,pr jiang">
-
-
-<title>YOLO v1 Real Time Object Detection | Debug Guy</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
+  
     
-    <link rel="stylesheet" href="/css/style.css">
     
-
-
-
-    <!-- scripts list from _config.yml -->
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-    
-    
-        
-    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"prjiang.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-    <script>
-        // this function is used to check current theme before page loaded.
-        (() => {
-            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
-            const isDark = currentTheme === 'dark';
-            const pagebody = document.getElementsByTagName('body')[0]
-            if (isDark) {
-                pagebody.classList.add('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
-            } else {
-                pagebody.classList.remove('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Light"
-            }
-        })();
-    </script>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prjiang</strong>
+    </a>
 
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo"><a href="/">Debug Guy</a></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/category">Categories</a>
-                
-                    <a class="menu-item" href="/about">About</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-        </div>
-    </nav>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">Debug Guy</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/category">Categories</a>
-                
-                    <a class="menu-item" href="/about">About</a>
-                
-            </div>
-        </div>
-    </nav>
-
-</header>
-<script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-        var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
-            mobileMenu.classList.remove("active")
-        }else{
-            toggleMenu.classList.add("active")
-            mobileMenu.classList.add("active")
-        }
-    }
-</script>
-            <div class="main">
-                <div class="container">
-    
-    
-        <div class="post-toc">
-    <div class="tocbot-list">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Startseite
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archiv
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Kategorie
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                Über mich
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="YOLO v1 Real Time Object Detection">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-18 22:18" pubdate>
+        July 18, 2021 pm
+      </time>
+    </span>
+  
 </div>
 
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
+<div class="mt-1">
+  
 
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
+  
 
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
+  
+  
+</div>
 
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">YOLO v1 Real Time Object Detection</h1>
             
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">prjiang</a>
-                    
+          </div>
 
-                    
-                        <span class="post-time">
-                        Date: <a href="#">July 18, 2021&nbsp;&nbsp;22:18:21</a>
-                        </span>
-                    
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Object-Detection/">Object Detection</a>
-                            
-                        </span>
-                    
-                </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">YOLO v1 Real Time Object Detection</h1>
             
-        </header>
-
-        <div class="post-content">
-            <p>You Only Look Once: Unified, Real-Time Object Detection</p>
+            <div class="markdown-body">
+              <p>You Only Look Once: Unified, Real-Time Object Detection</p>
 <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>Algorithm of The YOLO Detection System 其流程主要分為三個步驟 :</p>
 <ol>
 <li>將影像大小調整至448*448</li>
 <li>執行卷積神經網路進行物件偵測與分類</li>
 <li>透過 NMS (Non-max suppression) 方式框出影像中物件之位置，輸出最終結果</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ObjectDetection.png" alt="img1"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ObjectDetection.png" srcset="/img/loading.gif" lazyload alt="img1"></p>
 <h3 id="Object-localization-and-classification"><a href="#Object-localization-and-classification" class="headerlink" title="Object localization and classification"></a>Object localization and classification</h3><p>Object detection 運作步驟 :</p>
 <ol>
 <li>偵測目標位置(產生物件框)</li>
@@ -240,7 +259,7 @@
 <p>  e.g. YOLO</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/stage.png" alt="img2"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/stage.png" srcset="/img/loading.gif" lazyload alt="img2"></p>
 <h3 id="Comparison-to-Other-Real-Time-Systems"><a href="#Comparison-to-Other-Real-Time-Systems" class="headerlink" title="Comparison to Other Real-Time Systems"></a>Comparison to Other Real-Time Systems</h3><p>YOLO - FPS: 45, mAP: 63.4</p>
 <p>於 Real-Time Detectors 雖然每秒幀數(FPS)表現普通，不過其對所有辨識種類的平均辨識率(mAP)為最高。</p>
 <p>於 Less Than Real-Time 其mAP表現不遜色於其他，且FPS為最高。</p>
@@ -252,8 +271,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/comparison.jpg" alt="img3.1"></td>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ErrorAnalysis.jpg" alt="img3.2"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/comparison.jpg" srcset="/img/loading.gif" lazyload alt="img3.1"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/ErrorAnalysis.jpg" srcset="/img/loading.gif" lazyload alt="img3.2"></td>
 </tr>
 </tbody></table>
 <h4 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h4><p>IOU = 交集a / 聯集a，其值介於0~1之間。</p>
@@ -266,8 +285,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bird.png" alt="img4.1"></td>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/IOU.png" alt="img4.2"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bird.png" srcset="/img/loading.gif" lazyload alt="img4.1"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/IOU.png" srcset="/img/loading.gif" lazyload alt="img4.2"></td>
 </tr>
 </tbody></table>
 <h4 id="AP、mAP"><a href="#AP、mAP" class="headerlink" title="AP、mAP"></a>AP、mAP</h4><p>precision: 所有被系統預測為鴨子的結果中，真的是鴨子的比例。</p>
@@ -280,16 +299,16 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/predict.png" alt="img5.1"></td>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/result.png" alt="img5.2"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/predict.png" srcset="/img/loading.gif" lazyload alt="img5.1"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/result.png" srcset="/img/loading.gif" lazyload alt="img5.2"></td>
 </tr>
 <tr>
 <td align="center"><b>precision</b></td>
 <td align="center"><b>recall</b></td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/precision.png" alt="img5.3"></td>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/recall.png" alt="img5.4"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/precision.png" srcset="/img/loading.gif" lazyload alt="img5.3"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/recall.png" srcset="/img/loading.gif" lazyload alt="img5.4"></td>
 </tr>
 </tbody></table>
 <p>AP (average precision): 系統預測該類別時(鴨子)的平均辨識率。</p>
@@ -305,25 +324,25 @@
 <li>5 : 物件中心 (x, y)、寬高 (w, h)、confidence(是否為物件)</li>
 <li>C : 類別數量(兩個 bounding box 的類別機率)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/detections.png" alt="img6"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/detections.png" srcset="/img/loading.gif" lazyload alt="img6"></p>
 <h4 id="Confidence"><a href="#Confidence" class="headerlink" title="Confidence"></a>Confidence</h4><p>Grid cell 包含目標的機率與IOU相乘。</p>
 <p>Pr(Object) : bounding box 裡可能是物件的 probabilities</p>
 <p>Pr(Class | Object) : 偵測為物件後，該物件所屬類別的 probabilities</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/confidence.png" alt="img7"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/confidence.png" srcset="/img/loading.gif" lazyload alt="img7"></p>
 <h3 id="The-Architecture"><a href="#The-Architecture" class="headerlink" title="The Architecture"></a>The Architecture</h3><p>輸入尺寸調整至448*448，以增加提取解析度。</p>
 <p>神經網路參考GoogleNet，24層 Conv Layers、2層F.C。</p>
 <p>不同的是 YOLO 使用 1*1 卷積(降維)對 3*3 卷積核運算做壓縮，以減少計算參數。取代 GoogleNet 的 Inception modules。</p>
 <p>最後輸出 tensor 為 7 * 7 *(2 * 5 + 20) = 7 * 7 * 30</p>
 <p>C = 20，使用 PASCAL VOC 資料集，有20種類別。</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model1.png" alt="img8.1"></p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model2.png" alt="img8.2"></p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_output.png" alt="img8.3"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model1.png" srcset="/img/loading.gif" lazyload alt="img8.1"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/model2.png" srcset="/img/loading.gif" lazyload alt="img8.2"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_output.png" srcset="/img/loading.gif" lazyload alt="img8.3"></p>
 <p>Bounding box 四個位置值為正規化數值 :</p>
 <p>(x, y, w, h) = bbox(x, y, w, h) / 原影像(x, y, w, h)</p>
 <h4 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h4><p>Activation function 採用 leaky rectified linear activation (leaky ReLU):</p>
 <p>ReLU 會使部分神經元輸出為0，以解決 Overfitting，但有些神經元可能無法被激活(Dead ReLU Problem)，因此採用 Leaky ReLU 不增加計算複雜度，提升模型的學習能力。</p>
 <p>ReLU 是將所有負值皆設為零；Leaky ReLU 則是將負值乘上非零斜率。</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/leakyrelu.png" alt="img9"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/leakyrelu.png" srcset="/img/loading.gif" lazyload alt="img9"></p>
 <p>除了輸出層使用 linear activation，其他皆使用 leaky ReLU。</p>
 <h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>前20層 Conv Layers 是以大型 dataset(ImageNet) 進行 pretrain(特徵提取)，因此不修正此處權重。</p>
 <p>Pretrain 完成後，再接上隨機權重的4層 Conv Layers(分類器)、2層 F.C。</p>
@@ -334,13 +353,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/inference.jpg" alt="img10.1"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/inference.jpg" srcset="/img/loading.gif" lazyload alt="img10.1"></td>
 </tr>
 <tr>
 <td align="center">Detection Procedure</td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_detect.png" alt="img10.2"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/yolov1_detect.png" srcset="/img/loading.gif" lazyload alt="img10.2"></td>
 </tr>
 </tbody></table>
 <p>最後輸出層進行 detection procedure 時，以Grid 包含兩個 bbox 的 confidence 乘上 Pr(Class)，形成評估 bbox 的指數。</p>
@@ -348,17 +367,17 @@
 <p>誤差有分類誤差(class error)、邊界框定位誤差(localization error)。</p>
 <p>沒有物件的邊界框其 confidence 很低，會將最後指標推向幾乎等於0，導致誤差梯度過大，使整個損失函數被沒有物件的邊界框主導，造成損失不穩定且難以訓練好。</p>
 <p>因此誤差除了分類與邊界框定位外，還將有無包含物件的邊界框分開計算，且給予不同權重。</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction.png" alt="img11.2"></p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction2.png" alt="img11.2"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction.png" srcset="/img/loading.gif" lazyload alt="img11.2"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/lossfunction2.png" srcset="/img/loading.gif" lazyload alt="img11.2"></p>
 <p>w、h 取平方根 : bbox 的大小對 bias 的影響比例不同，因此取平方根以降低 bias。</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bbox-bias.jpg" alt="img11.3"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/bbox-bias.jpg" srcset="/img/loading.gif" lazyload alt="img11.3"></p>
 <h3 id="NMS-Non-max-suppression"><a href="#NMS-Non-max-suppression" class="headerlink" title="NMS (Non-max suppression)"></a>NMS (Non-max suppression)</h3><p>物件偵測時一個物件可能被很多物件框選中，因此採用 NMS 將多餘的物件框濾除。</p>
 <ol>
 <li>將 confidence 很低的 bbox 去除，並選出 confidence 最高的 bbox 加入”確定是物件集合” (selected objects)</li>
 <li>其他 bbox 與選出的 bbox 計算IOU，若 bbox 的IOU結果大於設定好之閾值，其 confidence 會設定為0</li>
 </ol>
 <p>Repeat 1、2 步驟直到沒有 bbox 的 confidence &gt; 0，selected objects 為最後結果，NMS結束。</p>
-<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/NMS.png" alt="img12"></p>
+<p><img src="https://raw.githubusercontent.com/prjiang/AI-Seminar/main/2021-07-12/report/img/NMS.png" srcset="/img/loading.gif" lazyload alt="img12"></p>
 <br>
 
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>YOLO v1 的速度較 two-stage 模型快上好幾倍(45 fps)，且 mAP(63.4) 也比 R-CNN 好很多。</p>
@@ -383,67 +402,211 @@
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=sq_OfIhb5Oc">圖解一階段物件偵測算法_Part01 - YOLOv1</a></li>
 </ul>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Object-Detection/">Object Detection</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/YOLO-v1/">YOLO v1</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Object-detection/">Object detection</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                     License: Copyright (c) 2021 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 LICENSE</a>
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/30/Raspberry%20Pi/RaspberryPi-OS/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Install Raspberry Pi OS</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/17/Note/Basic%20Git%20Commands/">
+                        <span class="hidden-mobile">Basic Git Commands</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>Author:</span>
-                        <span>prjiang</span>
-                    </p>
-                
-                
-                
-                    <p class="copyright-item">
-                        <span>License:</span>
-                        <span>Copyright (c) 2021 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-                    </p>
-                
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/YOLO-v1/"># YOLO v1</a>
-                    
-                        <a href="/tags/Object-detection/"># Object detection</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2021/07/30/Raspberry%20Pi/RaspberryPi-OS/">Install Raspberry Pi OS</a>
-            
-            
-            <a class="next" rel="next" href="/2021/07/17/Note/Basic%20Git%20Commands/">Basic Git Commands</a>
-            
-        </section>
-
-
-    </article>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-            </div>
-            <footer id="footer" class="footer">
-    <div class="copyright">
-        <span>© prjiang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-</body>
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>
